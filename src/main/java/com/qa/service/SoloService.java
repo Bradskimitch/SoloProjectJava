@@ -1,6 +1,6 @@
-package com.qa.persistence.repository;
+package com.qa.service;
 
-public interface SoloRepository {
+public interface SoloService {
 	String createAccount(String account);
 
 	String readAccounts();
@@ -11,7 +11,7 @@ public interface SoloRepository {
 	
 	String createCreature(String creature);
 
-	String readCreature();
+	String readCreatures();
 
 	String updateCreature(Long id, String creature);
 
