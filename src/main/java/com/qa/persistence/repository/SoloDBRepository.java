@@ -4,6 +4,10 @@ import static javax.transaction.Transactional.TxType.REQUIRED;
 import static javax.transaction.Transactional.TxType.SUPPORTS;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
@@ -14,6 +18,7 @@ import javax.transaction.Transactional;
 
 import com.qa.persistence.domain.Account;
 import com.qa.persistence.domain.Creature;
+import com.qa.persistence.domain.Item;
 import com.qa.util.JSONUtil;
 
 @Transactional(SUPPORTS)
@@ -36,7 +41,7 @@ public class SoloDBRepository implements SoloRepository {
 
 	// Accounts
 
-	private Account findAccount(Long id) {
+	private Account findAccount(String id) {
 		return manager.find(Account.class, id);
 	}
 
@@ -54,7 +59,7 @@ public class SoloDBRepository implements SoloRepository {
 	}
 
 	@Transactional(REQUIRED)
-	public String updateAccount(Long id, String account) {
+	public String updateAccount(String id, String account) {
 		Account accountInDB = findAccount(id);
 		if (accountInDB != null) {
 			manager.remove(accountInDB);
@@ -65,7 +70,7 @@ public class SoloDBRepository implements SoloRepository {
 	}
 
 	@Transactional(REQUIRED)
-	public String deleteAccount(Long id) {
+	public String deleteAccount(String id) {
 		Account accountInDB = findAccount(id);
 		if (accountInDB != null) {
 			manager.remove(accountInDB);
@@ -110,6 +115,60 @@ public class SoloDBRepository implements SoloRepository {
 			manager.remove(creatureInDB);
 		}
 		return "{\"message\": \"creature sucessfully deleted\"}";
+	}
+
+	// Equipment
+
+	private Item findItem(Long id) {
+		return manager.find(Item.class, id);
+	}
+
+	@Transactional(REQUIRED)
+	public String createItem(String item) {
+		Item anItem = util.getObjectForJSON(item, Item.class);
+		manager.persist(anItem);
+		return "{\"message\": \"item has been sucessfully added\"}";
+	}
+
+	public String readItems() {
+		Query query = manager.createQuery("Select a FROM Item a ORDER BY equipmentName");
+		List<Item> equipment = (List<Item>) query.getResultList();
+		return util.getJSONForObject(equipment);
+	}
+
+	@Transactional(REQUIRED)
+	public String updateItem(Long id, String item) {
+		Item equipmentInDB = findItem(id);
+		Item anItem = util.getObjectForJSON(item, Item.class);
+		if (equipmentInDB != null) {
+			if (anItem.getEquipmentName().length() < 1) {
+				anItem.setEquipmentName(equipmentInDB.getEquipmentName());
+			}
+			if (anItem.getEquipmentType().length() < 1) {
+				anItem.setEquipmentType(equipmentInDB.getEquipmentType());
+			}
+			if (anItem.getEquipmentRarity().length() < 1) {
+				anItem.setEquipmentRarity(equipmentInDB.getEquipmentRarity());
+			}
+			if (anItem.getEquipmentAttunement().length() < 1) {
+				anItem.setEquipmentAttunement(equipmentInDB.getEquipmentAttunement());
+			}
+			if (anItem.getEquipmentDescription().length() < 1) {
+				anItem.setEquipmentDescription(equipmentInDB.getEquipmentDescription());
+			}
+			manager.remove(equipmentInDB);
+		}
+		manager.persist(anItem);
+		return "{\"message\": \"item has been sucessfully updated\"}";
+	}
+
+	@Transactional(REQUIRED)
+	public String deleteItem(Long id) {
+		Item equipmentInDB = findItem(id);
+		if (equipmentInDB != null) {
+			manager.remove(equipmentInDB);
+		}
+		return "{\"message\": \"item sucessfully deleted\"}";
 	}
 
 }

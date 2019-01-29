@@ -5,9 +5,9 @@ public interface SoloRepository {
 
 	String readAccounts();
 
-	String updateAccount(Long id, String account);
+	String updateAccount(String id, String account);
 
-	String deleteAccount(Long id);
+	String deleteAccount(String id);
 	
 	String createCreature(String creature);
 
@@ -16,4 +16,12 @@ public interface SoloRepository {
 	String updateCreature(Long id, String creature);
 
 	String deleteCreature(Long id);
+	
+	String createItem(String item);
+
+	String readItems();
+
+	String updateItem(Long id, String item);
+
+	String deleteItem(Long id);
 }

@@ -33,4 +33,151 @@ public class Creature {
 	private String creatureReactions;
 	private String creatureLegendary;
 	private String creatureEquipment;
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getCreatureHP() {
+		return creatureHP;
+	}
+	public void setCreatureHP(String creatureHP) {
+		this.creatureHP = creatureHP;
+	}
+	public String getCreatureAC() {
+		return creatureAC;
+	}
+	public void setCreatureAC(String creatureAC) {
+		this.creatureAC = creatureAC;
+	}
+	public String getCreatureSpeed() {
+		return creatureSpeed;
+	}
+	public void setCreatureSpeed(String creatureSpeed) {
+		this.creatureSpeed = creatureSpeed;
+	}
+	public int getCreatureStr() {
+		return creatureStr;
+	}
+	public void setCreatureStr(int creatureStr) {
+		this.creatureStr = creatureStr;
+	}
+	public int getCreatureDex() {
+		return creatureDex;
+	}
+	public void setCreatureDex(int creatureDex) {
+		this.creatureDex = creatureDex;
+	}
+	public int getCreatureCon() {
+		return creatureCon;
+	}
+	public void setCreatureCon(int creatureCon) {
+		this.creatureCon = creatureCon;
+	}
+	public int getCreatureInt() {
+		return creatureInt;
+	}
+	public void setCreatureInt(int creatureInt) {
+		this.creatureInt = creatureInt;
+	}
+	public int getCreatureWis() {
+		return creatureWis;
+	}
+	public void setCreatureWis(int creatureWis) {
+		this.creatureWis = creatureWis;
+	}
+	public int getCreatureCha() {
+		return creatureCha;
+	}
+	public void setCreatureCha(int creatureCha) {
+		this.creatureCha = creatureCha;
+	}
+	public String getCreatureSavingThrows() {
+		return creatureSavingThrows;
+	}
+	public void setCreatureSavingThrows(String creatureSavingThrows) {
+		this.creatureSavingThrows = creatureSavingThrows;
+	}
+	public String getCreatureSkills() {
+		return creatureSkills;
+	}
+	public void setCreatureSkills(String creatureSkills) {
+		this.creatureSkills = creatureSkills;
+	}
+	public String getCreatureDamageRes() {
+		return creatureDamageRes;
+	}
+	public void setCreatureDamageRes(String creatureDamageRes) {
+		this.creatureDamageRes = creatureDamageRes;
+	}
+	public String getCreatureDamageImmune() {
+		return creatureDamageImmune;
+	}
+	public void setCreatureDamageImmune(String creatureDamageImmune) {
+		this.creatureDamageImmune = creatureDamageImmune;
+	}
+	public String getCreatureDamageVulnerable() {
+		return creatureDamageVulnerable;
+	}
+	public void setCreatureDamageVulnerable(String creatureDamageVulnerable) {
+		this.creatureDamageVulnerable = creatureDamageVulnerable;
+	}
+	public String getCreatureConditionImmune() {
+		return creatureConditionImmune;
+	}
+	public void setCreatureConditionImmune(String creatureConditionImmune) {
+		this.creatureConditionImmune = creatureConditionImmune;
+	}
+	public String getCreatureSenses() {
+		return creatureSenses;
+	}
+	public void setCreatureSenses(String creatureSenses) {
+		this.creatureSenses = creatureSenses;
+	}
+	public String getCreatureLanguage() {
+		return creatureLanguage;
+	}
+	public void setCreatureLanguage(String creatureLanguage) {
+		this.creatureLanguage = creatureLanguage;
+	}
+	public int getCreatureCR() {
+		return creatureCR;
+	}
+	public void setCreatureCR(int creatureCR) {
+		this.creatureCR = creatureCR;
+	}
+	public String getCreatureAbilities() {
+		return creatureAbilities;
+	}
+	public void setCreatureAbilities(String creatureAbilities) {
+		this.creatureAbilities = creatureAbilities;
+	}
+	public String getCreatureActions() {
+		return creatureActions;
+	}
+	public void setCreatureActions(String creatureActions) {
+		this.creatureActions = creatureActions;
+	}
+	public String getCreatureReactions() {
+		return creatureReactions;
+	}
+	public void setCreatureReactions(String creatureReactions) {
+		this.creatureReactions = creatureReactions;
+	}
+	public String getCreatureLegendary() {
+		return creatureLegendary;
+	}
+	public void setCreatureLegendary(String creatureLegendary) {
+		this.creatureLegendary = creatureLegendary;
+	}
+	public String getCreatureEquipment() {
+		return creatureEquipment;
+	}
+	public void setCreatureEquipment(String creatureEquipment) {
+		this.creatureEquipment = creatureEquipment;
+	}
+	
+	
+	
 }

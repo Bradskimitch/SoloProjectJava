@@ -10,7 +10,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import com.qa.service.SoloService;
 
-@Path("/account")
+@Path("/solo")
 public class SoloEndpoint {
 
 	@Inject
@@ -39,14 +39,14 @@ public class SoloEndpoint {
 	@Path("account/json/{id}")
 	@PUT
 	@Produces({ "application/json" })
-	public String updateAccount(@PathParam("id") Long id, String account) {
+	public String updateAccount(@PathParam("id") String id, String account) {
 		return service.updateAccount(id, account);
 	}
 
 	@Path("account/json/{id}")
 	@DELETE
 	@Produces({ "application/json" })
-	public String deleteAccount(@PathParam("id") Long id) {
+	public String deleteAccount(@PathParam("id") String id) {
 		return service.deleteAccount(id);
 	}
 
@@ -69,15 +69,45 @@ public class SoloEndpoint {
 	@Path("creature/json/{id}")
 	@PUT
 	@Produces({ "application/json" })
-	public String updatecreature(@PathParam("id") Long id, String creature) {
+	public String updateCreature(@PathParam("id") Long id, String creature) {
 		return service.updateCreature(id, creature);
 	}
 
 	@Path("creature/json/{id}")
 	@DELETE
 	@Produces({ "application/json" })
-	public String deletecreature(@PathParam("id") Long id) {
+	public String deleteCreature(@PathParam("id") Long id) {
 		return service.deleteCreature(id);
+	}
+
+	// Equipment
+
+	@Path("item/json")
+	@POST
+	@Produces({ "application/json" })
+	public String createItem(String item) {
+		return service.createItem(item);
+	}
+
+	@Path("item/json")
+	@GET                                        
+	@Produces({ "application/json" })
+	public String readItem() {
+		return service.readItems();
+	}
+
+	@Path("item/json/{id}")
+	@PUT
+	@Produces({ "application/json" })
+	public String updateItem(@PathParam("id") Long id, String item) {
+		return service.updateItem(id, item);
+	}
+
+	@Path("item/json/{id}")
+	@DELETE
+	@Produces({ "application/json" })
+	public String deleteItem(@PathParam("id") Long id) {
+		return service.deleteItem(id);
 	}
 
 }

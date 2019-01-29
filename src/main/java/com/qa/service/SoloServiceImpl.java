@@ -29,11 +29,11 @@ public class SoloServiceImpl implements SoloService {
 		return repo.readAccounts();
 	}
 
-	public String updateAccount(Long id, String account) {
+	public String updateAccount(String id, String account) {
 		return repo.updateAccount(id, account);
 	}
 
-	public String deleteAccount(Long id) {
+	public String deleteAccount(String id) {
 		return repo.deleteAccount(id);
 	}
 
@@ -53,6 +53,24 @@ public class SoloServiceImpl implements SoloService {
 
 	public String deleteCreature(Long id) {
 		return repo.deleteCreature(id);
+	}
+
+	// Equipment
+	
+	public String createItem(String item) {
+		return repo.createItem(item);
+	}
+
+	public String readItems() {
+		return repo.readItems();
+	}
+
+	public String updateItem(Long id, String item) {
+		return repo.updateItem(id, item);
+	}
+
+	public String deleteItem(Long id) {
+		return repo.deleteItem(id);
 	}
 
 }
