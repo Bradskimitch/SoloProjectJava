@@ -11,7 +11,7 @@ public interface SoloRepository {
 	
 	String createCreature(String creature);
 
-	String readCreature();
+	String readCreatures();
 
 	String updateCreature(Long id, String creature);
 

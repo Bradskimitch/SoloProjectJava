@@ -2,18 +2,12 @@ package com.qa.service;
 
 import javax.inject.Inject;
 
-import org.apache.log4j.Logger;
-
 import com.qa.persistence.repository.SoloRepository;
-import com.qa.util.JSONUtil;
 
 public class SoloServiceImpl implements SoloService {
 
 	@Inject
 	private SoloRepository repo;
-
-	@Inject
-	private JSONUtil util;
 
 	public void setRepo(SoloRepository repo) {
 		this.repo = repo;
@@ -44,7 +38,7 @@ public class SoloServiceImpl implements SoloService {
 	}
 
 	public String readCreatures() {
-		return repo.readCreature();
+		return repo.readCreatures();
 	}
 
 	public String updateCreature(Long id, String creature) {

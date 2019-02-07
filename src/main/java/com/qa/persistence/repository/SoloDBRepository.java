@@ -4,10 +4,7 @@ import static javax.transaction.Transactional.TxType.REQUIRED;
 import static javax.transaction.Transactional.TxType.SUPPORTS;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
@@ -91,8 +88,8 @@ public class SoloDBRepository implements SoloRepository {
 		return "{\"message\": \"creature has been sucessfully added\"}";
 	}
 
-	public String readCreature() {
-		Query query = manager.createQuery("Select a FROM Creature a");
+	public String readCreatures() {
+		Query query = manager.createQuery("Select a FROM Creature a ORDER BY creatureName");
 		Collection<Creature> creatures = (Collection<Creature>) query.getResultList();
 		return util.getJSONForObject(creatures);
 	}
@@ -100,10 +97,83 @@ public class SoloDBRepository implements SoloRepository {
 	@Transactional(REQUIRED)
 	public String updateCreature(Long id, String creature) {
 		Creature creatureInDB = findCreature(id);
+		Creature aCreature = util.getObjectForJSON(creature, Creature.class);
 		if (creatureInDB != null) {
+			if (aCreature.getCreatureName().length() < 1) {
+				aCreature.setCreatureName(creatureInDB.getCreatureName());
+			}
+			if (aCreature.getCreatureHP().length() < 1) {
+				aCreature.setCreatureHP(creatureInDB.getCreatureHP());
+			}
+			if (aCreature.getCreatureAC().length() < 1) {
+				aCreature.setCreatureAC(creatureInDB.getCreatureAC());
+			}
+			if (aCreature.getCreatureSpeed().length() < 1) {
+				aCreature.setCreatureSpeed(creatureInDB.getCreatureSpeed());
+			}
+			if (aCreature.getCreatureStr() < 1) {
+				aCreature.setCreatureStr(creatureInDB.getCreatureStr());
+			}
+			if (aCreature.getCreatureDex() < 1) {
+				aCreature.setCreatureDex(creatureInDB.getCreatureDex());
+			}
+			if (aCreature.getCreatureCon() < 1) {
+				aCreature.setCreatureCon(creatureInDB.getCreatureCon());
+			}
+			if (aCreature.getCreatureInt() < 1) {
+				aCreature.setCreatureInt(creatureInDB.getCreatureInt());
+			}
+			if (aCreature.getCreatureWis() < 1) {
+				aCreature.setCreatureWis(creatureInDB.getCreatureWis());
+			}
+			if (aCreature.getCreatureCha() < 1) {
+				aCreature.setCreatureCha(creatureInDB.getCreatureCha());
+			}
+			if (aCreature.getCreatureSavingThrows().length() < 1) {
+				aCreature.setCreatureSavingThrows(creatureInDB.getCreatureSavingThrows());
+			}
+			if (aCreature.getCreatureSkills().length() < 1) {
+				aCreature.setCreatureSkills(creatureInDB.getCreatureSkills());
+			}
+			if (aCreature.getCreatureDamageRes().length() < 1) {
+				aCreature.setCreatureDamageRes(creatureInDB.getCreatureDamageRes());
+			}
+			if (aCreature.getCreatureDamageImmune().length() < 1) {
+				aCreature.setCreatureDamageImmune(creatureInDB.getCreatureDamageImmune());
+			}
+			if (aCreature.getCreatureDamageVulnerable().length() < 1) {
+				aCreature.setCreatureDamageVulnerable(creatureInDB.getCreatureDamageVulnerable());
+			}
+			if (aCreature.getCreatureConditionImmune().length() < 1) {
+				aCreature.setCreatureConditionImmune(creatureInDB.getCreatureConditionImmune());
+			}
+			if (aCreature.getCreatureSenses().length() < 1) {
+				aCreature.setCreatureSenses(creatureInDB.getCreatureSenses());
+			}
+			if (aCreature.getCreatureLanguage().length() < 1) {
+				aCreature.setCreatureLanguage(creatureInDB.getCreatureLanguage());
+			}
+			if (aCreature.getCreatureCR().length() < 1) {
+				aCreature.setCreatureCR(creatureInDB.getCreatureCR());
+			}
+			if (aCreature.getCreatureAbilities().length() < 1) {
+				aCreature.setCreatureAbilities(creatureInDB.getCreatureAbilities());
+			}
+			if (aCreature.getCreatureActions().length() < 1) {
+				aCreature.setCreatureActions(creatureInDB.getCreatureActions());
+			}
+			if (aCreature.getCreatureReactions().length() < 1) {
+				aCreature.setCreatureReactions(creatureInDB.getCreatureReactions());
+			}
+			if (aCreature.getCreatureLegendary().length() < 1) {
+				aCreature.setCreatureLegendary(creatureInDB.getCreatureLegendary());
+			}
+			if (aCreature.getCreatureEquipment().length() < 1) {
+				aCreature.setCreatureEquipment(creatureInDB.getCreatureEquipment());
+			}			
 			manager.remove(creatureInDB);
 		}
-		Creature aCreature = util.getObjectForJSON(creature, Creature.class);
+		aCreature.setId(id);
 		manager.persist(aCreature);
 		return "{\"message\": \"creature has been sucessfully updated\"}";
 	}
@@ -158,6 +228,7 @@ public class SoloDBRepository implements SoloRepository {
 			}
 			manager.remove(equipmentInDB);
 		}
+		anItem.setEquipmentId(id);
 		manager.persist(anItem);
 		return "{\"message\": \"item has been sucessfully updated\"}";
 	}
