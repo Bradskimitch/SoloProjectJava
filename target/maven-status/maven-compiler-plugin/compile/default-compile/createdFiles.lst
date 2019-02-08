@@ -1,0 +1,11 @@
+com\qa\persistence\domain\Creature.class
+com\qa\rest\SoloEndpoint.class
+com\qa\persistence\domain\Item.class
+com\qa\persistence\repository\SoloDBRepository.class
+com\qa\persistence\domain\Account.class
+com\qa\service\SoloService.class
+com\qa\persistence\repository\SoloRepository.class
+com\qa\util\JSONUtil.class
+com\qa\service\SoloServiceImpl.class
+com\qa\rest\CORSFilter.class
+com\qa\rest\JAXActivator.class

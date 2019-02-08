@@ -15,56 +15,20 @@ public class SoloServiceImpl implements SoloService {
 	
 	// Accounts
 
-	public String createAccount(String account) {
-		return repo.createAccount(account);
+	public String createEntry(String input, String path) {
+		return repo.createEntry(input, path);
 	}
 
-	public String readAccounts() {
-		return repo.readAccounts();
+	public String readEntries(String path) {
+		return repo.readEntries(path);
 	}
 
-	public String updateAccount(String id, String account) {
-		return repo.updateAccount(id, account);
+	public String updateEntry(Long id, String input, String path) {
+		return repo.updateEntry(id, input, path);
 	}
 
-	public String deleteAccount(String id) {
-		return repo.deleteAccount(id);
-	}
-
-	// Creatures
-	
-	public String createCreature(String creature) {
-		return repo.createCreature(creature);
-	}
-
-	public String readCreatures() {
-		return repo.readCreatures();
-	}
-
-	public String updateCreature(Long id, String creature) {
-		return repo.updateCreature(id, creature);
-	}
-
-	public String deleteCreature(Long id) {
-		return repo.deleteCreature(id);
-	}
-
-	// Equipment
-	
-	public String createItem(String item) {
-		return repo.createItem(item);
-	}
-
-	public String readItems() {
-		return repo.readItems();
-	}
-
-	public String updateItem(Long id, String item) {
-		return repo.updateItem(id, item);
-	}
-
-	public String deleteItem(Long id) {
-		return repo.deleteItem(id);
+	public String deleteEntry(Long id, String path) {
+		return repo.deleteEntry(id, path);
 	}
 
 }

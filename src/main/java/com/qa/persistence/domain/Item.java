@@ -1,5 +1,6 @@
 package com.qa.persistence.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +18,7 @@ public class Item {
 	private String equipmentAttunement;
 	@Size(max=999)
 	private String equipmentDescription;
+	
 	public Long getEquipmentId() {
 		return equipmentId;
 	}

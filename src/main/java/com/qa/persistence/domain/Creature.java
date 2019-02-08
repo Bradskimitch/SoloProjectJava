@@ -1,5 +1,6 @@
 package com.qa.persistence.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +12,9 @@ public class Creature {
 	@Id
 	private Long id;
 	private String creatureName;
+	private String creatureRace;
+	private String creatureSubRace;
+	private String creatureAllignment;
 	private String creatureHP;
 	private String creatureAC;
 	private String creatureSpeed;
@@ -37,7 +41,7 @@ public class Creature {
 
 	public Long getId() {
 		return id;
-	} 
+	}
 
 	public void setId(Long id) {
 		this.id = id;
@@ -233,6 +237,30 @@ public class Creature {
 
 	public void setCreatureName(String creatureName) {
 		this.creatureName = creatureName;
+	}
+
+	public String getCreatureRace() {
+		return creatureRace;
+	}
+
+	public void setCreatureRace(String creatureRace) {
+		this.creatureRace = creatureRace;
+	}
+
+	public String getCreatureSubRace() {
+		return creatureSubRace;
+	}
+
+	public void setCreatureSubRace(String creatureSubRace) {
+		this.creatureSubRace = creatureSubRace;
+	}
+
+	public String getCreatureAllignment() {
+		return creatureAllignment;
+	}
+
+	public void setCreatureAllignment(String creatureAllignment) {
+		this.creatureAllignment = creatureAllignment;
 	}
 
 }
