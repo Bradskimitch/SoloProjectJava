@@ -192,7 +192,6 @@ public class SoloDBRepository implements SoloRepository {
 				}
 				manager.remove(creatureInDB);
 			}
-			//aCreature.setId(id);
 			manager.persist(aCreature);
 			break;
 		case "item":
@@ -216,7 +215,6 @@ public class SoloDBRepository implements SoloRepository {
 				}
 				manager.remove(equipmentInDB);
 			}
-			//anItem.setEquipmentId(id);
 			manager.persist(anItem);
 			break;
 		}

@@ -10,7 +10,6 @@ import javax.persistence.Id;
 public class Creature {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	@Column(name="id", insertable=true, updatable=true, unique=true, nullable=false)
 	private Long id;
 	private String creatureName;
 	private String creatureRace;
