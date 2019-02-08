@@ -38,208 +38,218 @@ public class SoloDBRepository implements SoloRepository {
 
 	// Accounts
 
-	private Account findAccount(String id) {
+	private Account findAccount(Long id) {
 		return manager.find(Account.class, id);
 	}
-
-	@Transactional(REQUIRED)
-	public String createAccount(String account) {
-		Account anAccount = util.getObjectForJSON(account, Account.class);
-		manager.persist(anAccount);
-		return "{\"message\": \"account has been sucessfully added\"}";
-	}
-
-	public String readAccounts() {
-		Query query = manager.createQuery("Select a FROM Account a");
-		Collection<Account> accounts = (Collection<Account>) query.getResultList();
-		return util.getJSONForObject(accounts);
-	}
-
-	@Transactional(REQUIRED)
-	public String updateAccount(String id, String account) {
-		Account accountInDB = findAccount(id);
-		if (accountInDB != null) {
-			manager.remove(accountInDB);
-		}
-		Account anAccount = util.getObjectForJSON(account, Account.class);
-		manager.persist(anAccount);
-		return "{\"message\": \"account has been sucessfully updated\"}";
-	}
-
-	@Transactional(REQUIRED)
-	public String deleteAccount(String id) {
-		Account accountInDB = findAccount(id);
-		if (accountInDB != null) {
-			manager.remove(accountInDB);
-		}
-		return "{\"message\": \"creature sucessfully deleted\"}";
-	}
-
-	// Creatures
 
 	private Creature findCreature(Long id) {
 		return manager.find(Creature.class, id);
 	}
-
-	@Transactional(REQUIRED)
-	public String createCreature(String creature) {
-		Creature aCreature = util.getObjectForJSON(creature, Creature.class);
-		manager.persist(aCreature);
-		return "{\"message\": \"creature has been sucessfully added\"}";
-	}
-
-	public String readCreatures() {
-		Query query = manager.createQuery("Select a FROM Creature a ORDER BY creatureName");
-		Collection<Creature> creatures = (Collection<Creature>) query.getResultList();
-		return util.getJSONForObject(creatures);
-	}
-
-	@Transactional(REQUIRED)
-	public String updateCreature(Long id, String creature) {
-		Creature creatureInDB = findCreature(id);
-		Creature aCreature = util.getObjectForJSON(creature, Creature.class);
-		if (creatureInDB != null) {
-			if (aCreature.getCreatureName().length() < 1) {
-				aCreature.setCreatureName(creatureInDB.getCreatureName());
-			}
-			if (aCreature.getCreatureHP().length() < 1) {
-				aCreature.setCreatureHP(creatureInDB.getCreatureHP());
-			}
-			if (aCreature.getCreatureAC().length() < 1) {
-				aCreature.setCreatureAC(creatureInDB.getCreatureAC());
-			}
-			if (aCreature.getCreatureSpeed().length() < 1) {
-				aCreature.setCreatureSpeed(creatureInDB.getCreatureSpeed());
-			}
-			if (aCreature.getCreatureStr() < 1) {
-				aCreature.setCreatureStr(creatureInDB.getCreatureStr());
-			}
-			if (aCreature.getCreatureDex() < 1) {
-				aCreature.setCreatureDex(creatureInDB.getCreatureDex());
-			}
-			if (aCreature.getCreatureCon() < 1) {
-				aCreature.setCreatureCon(creatureInDB.getCreatureCon());
-			}
-			if (aCreature.getCreatureInt() < 1) {
-				aCreature.setCreatureInt(creatureInDB.getCreatureInt());
-			}
-			if (aCreature.getCreatureWis() < 1) {
-				aCreature.setCreatureWis(creatureInDB.getCreatureWis());
-			}
-			if (aCreature.getCreatureCha() < 1) {
-				aCreature.setCreatureCha(creatureInDB.getCreatureCha());
-			}
-			if (aCreature.getCreatureSavingThrows().length() < 1) {
-				aCreature.setCreatureSavingThrows(creatureInDB.getCreatureSavingThrows());
-			}
-			if (aCreature.getCreatureSkills().length() < 1) {
-				aCreature.setCreatureSkills(creatureInDB.getCreatureSkills());
-			}
-			if (aCreature.getCreatureDamageRes().length() < 1) {
-				aCreature.setCreatureDamageRes(creatureInDB.getCreatureDamageRes());
-			}
-			if (aCreature.getCreatureDamageImmune().length() < 1) {
-				aCreature.setCreatureDamageImmune(creatureInDB.getCreatureDamageImmune());
-			}
-			if (aCreature.getCreatureDamageVulnerable().length() < 1) {
-				aCreature.setCreatureDamageVulnerable(creatureInDB.getCreatureDamageVulnerable());
-			}
-			if (aCreature.getCreatureConditionImmune().length() < 1) {
-				aCreature.setCreatureConditionImmune(creatureInDB.getCreatureConditionImmune());
-			}
-			if (aCreature.getCreatureSenses().length() < 1) {
-				aCreature.setCreatureSenses(creatureInDB.getCreatureSenses());
-			}
-			if (aCreature.getCreatureLanguage().length() < 1) {
-				aCreature.setCreatureLanguage(creatureInDB.getCreatureLanguage());
-			}
-			if (aCreature.getCreatureCR().length() < 1) {
-				aCreature.setCreatureCR(creatureInDB.getCreatureCR());
-			}
-			if (aCreature.getCreatureAbilities().length() < 1) {
-				aCreature.setCreatureAbilities(creatureInDB.getCreatureAbilities());
-			}
-			if (aCreature.getCreatureActions().length() < 1) {
-				aCreature.setCreatureActions(creatureInDB.getCreatureActions());
-			}
-			if (aCreature.getCreatureReactions().length() < 1) {
-				aCreature.setCreatureReactions(creatureInDB.getCreatureReactions());
-			}
-			if (aCreature.getCreatureLegendary().length() < 1) {
-				aCreature.setCreatureLegendary(creatureInDB.getCreatureLegendary());
-			}
-			if (aCreature.getCreatureEquipment().length() < 1) {
-				aCreature.setCreatureEquipment(creatureInDB.getCreatureEquipment());
-			}			
-			manager.remove(creatureInDB);
-		}
-		aCreature.setId(id);
-		manager.persist(aCreature);
-		return "{\"message\": \"creature has been sucessfully updated\"}";
-	}
-
-	@Transactional(REQUIRED)
-	public String deleteCreature(Long id) {
-		Creature creatureInDB = findCreature(id);
-		if (creatureInDB != null) {
-			manager.remove(creatureInDB);
-		}
-		return "{\"message\": \"creature sucessfully deleted\"}";
-	}
-
-	// Equipment
 
 	private Item findItem(Long id) {
 		return manager.find(Item.class, id);
 	}
 
 	@Transactional(REQUIRED)
-	public String createItem(String item) {
-		Item anItem = util.getObjectForJSON(item, Item.class);
-		manager.persist(anItem);
-		return "{\"message\": \"item has been sucessfully added\"}";
+	public String createEntry(String input, String path) {
+		String message = " successfully added.";
+		switch (path) {
+		case "account":
+			Account anEntry = util.getObjectForJSON(input, Account.class);
+			manager.persist(anEntry);
+			message = "Account" + message;
+			break;
+		case "creature":
+			Creature aCreature = util.getObjectForJSON(input, Creature.class);
+			manager.persist(aCreature);
+			message = "Creature" + message;
+			break;
+		case "item":
+			Item anItem = util.getObjectForJSON(input, Item.class);
+			manager.persist(anItem);
+			message = "Item" + message;
+			break;
+		}
+		return message;
 	}
 
-	public String readItems() {
-		Query query = manager.createQuery("Select a FROM Item a ORDER BY equipmentName");
-		List<Item> equipment = (List<Item>) query.getResultList();
-		return util.getJSONForObject(equipment);
+	public String readEntries(String path) {
+		switch (path) {
+		case "account":
+			Query accountQuery = manager.createQuery("Select a FROM Account a");
+			List<Account> accounts = (List<Account>) accountQuery.getResultList();
+			return util.getJSONForObject(accounts);
+		case "creature":
+			Query creatureQuery = manager.createQuery("Select a FROM Creature a ORDER BY creatureName");
+			List<Creature> creatures = (List<Creature>) creatureQuery.getResultList();
+			return util.getJSONForObject(creatures);
+		case "item":
+			Query itemQuery = manager.createQuery("Select a FROM Item a ORDER BY equipmentName");
+			List<Item> equipment = (List<Item>) itemQuery.getResultList();
+			return util.getJSONForObject(equipment);
+		}
+		return "";
+
 	}
 
 	@Transactional(REQUIRED)
-	public String updateItem(Long id, String item) {
-		Item equipmentInDB = findItem(id);
-		Item anItem = util.getObjectForJSON(item, Item.class);
-		if (equipmentInDB != null) {
-			if (anItem.getEquipmentName().length() < 1) {
-				anItem.setEquipmentName(equipmentInDB.getEquipmentName());
+	public String updateEntry(Long id, String input, String path) {
+		String message = " successfully added.";
+		switch (path) {
+		case "account":
+			Account accountInDB = findAccount(id);
+			if (accountInDB != null) {
+				manager.remove(accountInDB);
 			}
-			if (anItem.getEquipmentType().length() < 1) {
-				anItem.setEquipmentType(equipmentInDB.getEquipmentType());
+			Account anAccount = util.getObjectForJSON(input, Account.class);
+			manager.persist(anAccount);
+			message = "Account" + message;
+			break;
+		case "creature":
+			Creature creatureInDB = findCreature(id);
+			Creature aCreature = util.getObjectForJSON(input, Creature.class);
+			if (creatureInDB != null) {
+				if (aCreature.getCreatureName().length() < 1) {
+					aCreature.setCreatureName(creatureInDB.getCreatureName());
+				}
+				if (aCreature.getCreatureRace().length() < 1) {
+					aCreature.setCreatureRace(creatureInDB.getCreatureRace());
+				}
+				if (aCreature.getCreatureSubRace().length() < 1) {
+					aCreature.setCreatureSubRace(creatureInDB.getCreatureSubRace());
+				}
+				if (aCreature.getCreatureAllignment().length() < 1) {
+					aCreature.setCreatureAllignment(creatureInDB.getCreatureAllignment());
+				}
+				if (aCreature.getCreatureHP().length() < 1) {
+					aCreature.setCreatureHP(creatureInDB.getCreatureHP());
+				}
+				if (aCreature.getCreatureAC().length() < 1) {
+					aCreature.setCreatureAC(creatureInDB.getCreatureAC());
+				}
+				if (aCreature.getCreatureSpeed().length() < 1) {
+					aCreature.setCreatureSpeed(creatureInDB.getCreatureSpeed());
+				}
+				if (aCreature.getCreatureStr() < 1) {
+					aCreature.setCreatureStr(creatureInDB.getCreatureStr());
+				}
+				if (aCreature.getCreatureDex() < 1) {
+					aCreature.setCreatureDex(creatureInDB.getCreatureDex());
+				}
+				if (aCreature.getCreatureCon() < 1) {
+					aCreature.setCreatureCon(creatureInDB.getCreatureCon());
+				}
+				if (aCreature.getCreatureInt() < 1) {
+					aCreature.setCreatureInt(creatureInDB.getCreatureInt());
+				}
+				if (aCreature.getCreatureWis() < 1) {
+					aCreature.setCreatureWis(creatureInDB.getCreatureWis());
+				}
+				if (aCreature.getCreatureCha() < 1) {
+					aCreature.setCreatureCha(creatureInDB.getCreatureCha());
+				}
+				if (aCreature.getCreatureSavingThrows().length() < 1) {
+					aCreature.setCreatureSavingThrows(creatureInDB.getCreatureSavingThrows());
+				}
+				if (aCreature.getCreatureSkills().length() < 1) {
+					aCreature.setCreatureSkills(creatureInDB.getCreatureSkills());
+				}
+				if (aCreature.getCreatureDamageRes().length() < 1) {
+					aCreature.setCreatureDamageRes(creatureInDB.getCreatureDamageRes());
+				}
+				if (aCreature.getCreatureDamageImmune().length() < 1) {
+					aCreature.setCreatureDamageImmune(creatureInDB.getCreatureDamageImmune());
+				}
+				if (aCreature.getCreatureDamageVulnerable().length() < 1) {
+					aCreature.setCreatureDamageVulnerable(creatureInDB.getCreatureDamageVulnerable());
+				}
+				if (aCreature.getCreatureConditionImmune().length() < 1) {
+					aCreature.setCreatureConditionImmune(creatureInDB.getCreatureConditionImmune());
+				}
+				if (aCreature.getCreatureSenses().length() < 1) {
+					aCreature.setCreatureSenses(creatureInDB.getCreatureSenses());
+				}
+				if (aCreature.getCreatureLanguage().length() < 1) {
+					aCreature.setCreatureLanguage(creatureInDB.getCreatureLanguage());
+				}
+				if (aCreature.getCreatureCR().length() < 1) {
+					aCreature.setCreatureCR(creatureInDB.getCreatureCR());
+				}
+				if (aCreature.getCreatureAbilities().length() < 1) {
+					aCreature.setCreatureAbilities(creatureInDB.getCreatureAbilities());
+				}
+				if (aCreature.getCreatureActions().length() < 1) {
+					aCreature.setCreatureActions(creatureInDB.getCreatureActions());
+				}
+				if (aCreature.getCreatureReactions().length() < 1) {
+					aCreature.setCreatureReactions(creatureInDB.getCreatureReactions());
+				}
+				if (aCreature.getCreatureLegendary().length() < 1) {
+					aCreature.setCreatureLegendary(creatureInDB.getCreatureLegendary());
+				}
+				if (aCreature.getCreatureEquipment().length() < 1) {
+					aCreature.setCreatureEquipment(creatureInDB.getCreatureEquipment());
+				}
+				manager.remove(creatureInDB);
 			}
-			if (anItem.getEquipmentRarity().length() < 1) {
-				anItem.setEquipmentRarity(equipmentInDB.getEquipmentRarity());
+			//aCreature.setId(id);
+			manager.persist(aCreature);
+			break;
+		case "item":
+			Item equipmentInDB = findItem(id);
+			Item anItem = util.getObjectForJSON(input, Item.class);
+			if (equipmentInDB != null) {
+				if (anItem.getEquipmentName().length() < 1) {
+					anItem.setEquipmentName(equipmentInDB.getEquipmentName());
+				}
+				if (anItem.getEquipmentType().length() < 1) {
+					anItem.setEquipmentType(equipmentInDB.getEquipmentType());
+				}
+				if (anItem.getEquipmentRarity().length() < 1) {
+					anItem.setEquipmentRarity(equipmentInDB.getEquipmentRarity());
+				}
+				if (anItem.getEquipmentAttunement().length() < 1) {
+					anItem.setEquipmentAttunement(equipmentInDB.getEquipmentAttunement());
+				}
+				if (anItem.getEquipmentDescription().length() < 1) {
+					anItem.setEquipmentDescription(equipmentInDB.getEquipmentDescription());
+				}
+				manager.remove(equipmentInDB);
 			}
-			if (anItem.getEquipmentAttunement().length() < 1) {
-				anItem.setEquipmentAttunement(equipmentInDB.getEquipmentAttunement());
-			}
-			if (anItem.getEquipmentDescription().length() < 1) {
-				anItem.setEquipmentDescription(equipmentInDB.getEquipmentDescription());
-			}
-			manager.remove(equipmentInDB);
+			//anItem.setEquipmentId(id);
+			manager.persist(anItem);
+			break;
 		}
-		anItem.setEquipmentId(id);
-		manager.persist(anItem);
-		return "{\"message\": \"item has been sucessfully updated\"}";
+		return message;
 	}
 
 	@Transactional(REQUIRED)
-	public String deleteItem(Long id) {
-		Item equipmentInDB = findItem(id);
-		if (equipmentInDB != null) {
-			manager.remove(equipmentInDB);
+	public String deleteEntry(Long id, String path) {
+		String message = " successfully deleted.";
+		switch (path) {
+		case "account":
+			Account accountInDB = findAccount(id);
+			if (accountInDB != null) {
+				manager.remove(accountInDB);
+			}
+			message = "Account" + message;
+			break;
+		case "creature":
+			Creature creatureInDB = findCreature(id);
+			if (creatureInDB != null) {
+				manager.remove(creatureInDB);
+			}
+			message = "Creature" + message;
+			break;
+		case "item":
+			Item equipmentInDB = findItem(id);
+			if (equipmentInDB != null) {
+				manager.remove(equipmentInDB);
+			}
+			message = "Item" + message;
+			break;
 		}
-		return "{\"message\": \"item sucessfully deleted\"}";
-	}
+		return message;
 
+	}
 }

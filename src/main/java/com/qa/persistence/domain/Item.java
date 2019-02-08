@@ -1,5 +1,6 @@
 package com.qa.persistence.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +11,7 @@ import javax.validation.constraints.Size;
 public class Item {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
+	@Column(name="equipmentId", insertable=true, updatable=true, unique=true, nullable=false)
 	private Long equipmentId;
 	private String equipmentName;
 	private String equipmentType;
@@ -17,6 +19,7 @@ public class Item {
 	private String equipmentAttunement;
 	@Size(max=999)
 	private String equipmentDescription;
+	
 	public Long getEquipmentId() {
 		return equipmentId;
 	}
